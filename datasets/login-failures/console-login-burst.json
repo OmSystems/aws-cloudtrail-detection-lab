@@ -5,35 +5,105 @@
       "eventName": "ConsoleLogin",
       "eventTime": "2026-11-25T08:00:00Z",
       "sourceIPAddress": "203.0.113.10",
-      "responseElements": {"ConsoleLogin": "Failure"}
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "eventVersion": "1.08",
+      "awsRegion": "eu-central-1",
+      "eventID": "00000000-0000-0000-0000-00005eed0007",
+      "eventType": "AwsConsoleSignIn",
+      "userIdentity": {
+        "type": "IAMUser",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
     },
     {
       "eventSource": "signin.amazonaws.com",
       "eventName": "ConsoleLogin",
       "eventTime": "2026-11-25T08:02:00Z",
       "sourceIPAddress": "203.0.113.10",
-      "responseElements": {"ConsoleLogin": "Failure"}
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "eventVersion": "1.08",
+      "awsRegion": "eu-central-1",
+      "eventID": "00000000-0000-0000-0000-00005eed0008",
+      "eventType": "AwsConsoleSignIn",
+      "userIdentity": {
+        "type": "IAMUser",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
     },
     {
       "eventSource": "signin.amazonaws.com",
       "eventName": "ConsoleLogin",
       "eventTime": "2026-11-25T08:04:00Z",
       "sourceIPAddress": "203.0.113.10",
-      "responseElements": {"ConsoleLogin": "Failure"}
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "eventVersion": "1.08",
+      "awsRegion": "eu-central-1",
+      "eventID": "00000000-0000-0000-0000-00005eed0009",
+      "eventType": "AwsConsoleSignIn",
+      "userIdentity": {
+        "type": "IAMUser",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
     },
     {
       "eventSource": "signin.amazonaws.com",
       "eventName": "ConsoleLogin",
       "eventTime": "2026-11-25T08:06:00Z",
       "sourceIPAddress": "203.0.113.10",
-      "responseElements": {"ConsoleLogin": "Failure"}
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "eventVersion": "1.08",
+      "awsRegion": "eu-central-1",
+      "eventID": "00000000-0000-0000-0000-00005eed000a",
+      "eventType": "AwsConsoleSignIn",
+      "userIdentity": {
+        "type": "IAMUser",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
     },
     {
       "eventSource": "signin.amazonaws.com",
       "eventName": "ConsoleLogin",
       "eventTime": "2026-11-25T08:08:00Z",
       "sourceIPAddress": "203.0.113.10",
-      "responseElements": {"ConsoleLogin": "Failure"}
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "eventVersion": "1.08",
+      "awsRegion": "eu-central-1",
+      "eventID": "00000000-0000-0000-0000-00005eed000b",
+      "eventType": "AwsConsoleSignIn",
+      "userIdentity": {
+        "type": "IAMUser",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
     }
   ]
 }

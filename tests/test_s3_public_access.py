@@ -135,3 +135,56 @@ def test_skips_malformed_grant_entries():
 
     assert result is not None
     assert result["rule_id"] == "S3-001"
+
+def test_ignores_denied_put_bucket_acl():
+    event = {
+        "eventSource": "s3.amazonaws.com",
+        "eventName": "PutBucketAcl",
+        "errorCode": "AccessDenied",
+        "requestParameters": {
+            "bucketName": "company-data",
+            "AccessControlPolicy": {
+                "AccessControlList": {
+                    "Grant": {
+                        "Grantee": {
+                            "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+                        },
+                        "Permission": "READ",
+                    }
+                }
+            },
+        },
+    }
+
+    assert detect_public_s3_acl(event) is None
+
+
+def test_finding_includes_investigation_fields():
+    event = {
+        "eventSource": "s3.amazonaws.com",
+        "eventName": "PutBucketAcl",
+        "eventTime": "2026-11-24T10:00:00Z",
+        "eventID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+        "awsRegion": "eu-central-1",
+        "sourceIPAddress": "198.51.100.7",
+        "userIdentity": {"userName": "example-admin"},
+        "requestParameters": {
+            "bucketName": "company-data",
+            "AccessControlPolicy": {
+                "AccessControlList": {
+                    "Grant": {
+                        "Grantee": {
+                            "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+                        },
+                        "Permission": "READ",
+                    }
+                }
+            },
+        },
+    }
+
+    result = detect_public_s3_acl(event)
+
+    assert result["event_id"] == "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    assert result["event_time"] == "2026-11-24T10:00:00Z"
+    assert result["actor"] == "example-admin"

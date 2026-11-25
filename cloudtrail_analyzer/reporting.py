@@ -97,7 +97,13 @@ def write_markdown_report(findings, output_path):
                 resource_fields = {
                     "bucket_name": "Bucket",
                     "image_id": "AMI",
+                    "event_time": "Time",
+                    "first_event_time": "First failure",
+                    "last_event_time": "Last failure",
+                    "actor": "Actor",
                     "source_ip": "Source IP",
+                    "aws_region": "Region",
+                    "event_id": "Event ID",
                 }
 
                 for field, label in resource_fields.items():
@@ -105,6 +111,23 @@ def write_markdown_report(findings, output_path):
                         lines.append(
                             f"- **{label}:** {finding[field]}"
                         )
+
+                if finding.get("failed_attempts"):
+                    lines.append(
+                        f"- **Failed attempts:** {finding['failed_attempts']}"
+                    )
+
+                if finding.get("targeted_users"):
+                    lines.append(
+                        "- **Targeted users:** "
+                        + ", ".join(finding["targeted_users"])
+                    )
+
+                if finding.get("event_ids"):
+                    lines.append(
+                        "- **Event IDs:** "
+                        + ", ".join(finding["event_ids"])
+                    )
 
                 description = finding.get(
                     "description",

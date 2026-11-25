@@ -27,7 +27,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -51,7 +51,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_54",
@@ -98,7 +98,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     10,
@@ -122,7 +122,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_53",
@@ -169,7 +169,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     10,
@@ -193,7 +193,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_56",
@@ -240,7 +240,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     10,
@@ -264,7 +264,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_55",
@@ -311,7 +311,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     10,
@@ -335,7 +335,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_93",
@@ -462,7 +462,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     40,
@@ -486,7 +486,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_41",
@@ -511,7 +511,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     1,
@@ -535,7 +535,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_21",
@@ -577,7 +577,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -636,13 +636,13 @@
                     "resource": "aws_s3_bucket_versioning.company_data",
                     "entity_tags": {},
                     "evaluations": null,
-                    "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                    "file_abs_path": "./terraform/secure/main.tf",
                     "resource_address": null
                 },
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV2_AWS_6",
@@ -684,7 +684,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -747,13 +747,13 @@
                     "resource": "aws_s3_bucket_public_access_block.company_data",
                     "entity_tags": {},
                     "evaluations": null,
-                    "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                    "file_abs_path": "./terraform/secure/main.tf",
                     "resource_address": null
                 },
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_57",
@@ -798,7 +798,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -822,7 +822,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_20",
@@ -866,7 +866,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -890,7 +890,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_19",
@@ -932,7 +932,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -999,13 +999,13 @@
                     "resource": "aws_s3_bucket_server_side_encryption_configuration.company_data",
                     "entity_tags": {},
                     "evaluations": null,
-                    "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                    "file_abs_path": "./terraform/secure/main.tf",
                     "resource_address": null
                 },
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             }
         ],
         "failed_checks": [
@@ -1049,7 +1049,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -1073,7 +1073,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV2_AWS_62",
@@ -1113,7 +1113,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -1137,7 +1137,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_145",
@@ -1179,7 +1179,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -1246,13 +1246,13 @@
                     "resource": "aws_s3_bucket_server_side_encryption_configuration.company_data",
                     "entity_tags": {},
                     "evaluations": null,
-                    "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                    "file_abs_path": "./terraform/secure/main.tf",
                     "resource_address": null
                 },
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV2_AWS_61",
@@ -1293,7 +1293,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -1317,7 +1317,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             },
             {
                 "check_id": "CKV_AWS_18",
@@ -1358,7 +1358,7 @@
                     ]
                 ],
                 "file_path": "/main.tf",
-                "file_abs_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf",
+                "file_abs_path": "./terraform/secure/main.tf",
                 "repo_file_path": "/terraform/secure/main.tf",
                 "file_line_range": [
                     5,
@@ -1382,7 +1382,7 @@
                 "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
                 "details": [],
                 "check_len": null,
-                "definition_context_file_path": "/home/ompatel/aws-cloudtrail-detection-lab/terraform/secure/main.tf"
+                "definition_context_file_path": "./terraform/secure/main.tf"
             }
         ],
         "skipped_checks": [],

@@ -1,3 +1,6 @@
+from cloudtrail_analyzer.rules.common import event_context, is_failed_call
+
+
 SECURITY_EVENTS = {
     "cloudtrail.amazonaws.com": {
         "StopLogging": "CloudTrail logging stopped.",
@@ -22,11 +25,15 @@ def detect_security_service_deletion(event):
     if event_name not in service_events:
         return None
 
+    if is_failed_call(event):
+        return None
+
     return {
         "rule_id": "SEC-001",
         "rule_name": "Security Service Deletion or Shutdown",
         "severity": "HIGH",
         "event_source": event_source,
         "event_name": event_name,
-        "description": service_events[event_name]
+        "description": service_events[event_name],
+        **event_context(event),
     }

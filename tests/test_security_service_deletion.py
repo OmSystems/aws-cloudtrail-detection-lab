@@ -74,3 +74,29 @@ def test_ignores_event_with_missing_fields():
     event = {}
 
     assert detect_security_service_deletion(event) is None
+
+def test_ignores_denied_stop_logging():
+    event = {
+        "eventSource": "cloudtrail.amazonaws.com",
+        "eventName": "StopLogging",
+        "errorCode": "AccessDenied",
+    }
+
+    assert detect_security_service_deletion(event) is None
+
+
+def test_finding_includes_investigation_fields():
+    event = {
+        "eventSource": "cloudtrail.amazonaws.com",
+        "eventName": "StopLogging",
+        "eventTime": "2026-11-25T08:00:00Z",
+        "eventID": "99999999-8888-7777-6666-555555555555",
+        "userIdentity": {
+            "arn": "arn:aws:iam::123456789012:user/example-admin"
+        },
+    }
+
+    result = detect_security_service_deletion(event)
+
+    assert result["event_id"] == "99999999-8888-7777-6666-555555555555"
+    assert result["actor"] == "arn:aws:iam::123456789012:user/example-admin"

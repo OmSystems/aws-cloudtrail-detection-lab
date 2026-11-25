@@ -2,27 +2,54 @@
   "Records": [
     {
       "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventTime": "2026-11-25T08:00:00Z",
       "eventSource": "cloudtrail.amazonaws.com",
       "eventName": "StopLogging",
-      "eventTime": "2026-11-25T08:00:00Z",
       "awsRegion": "eu-central-1",
-      "sourceIPAddress": "203.0.113.10"
+      "sourceIPAddress": "203.0.113.10",
+      "eventID": "00000000-0000-0000-0000-00005eed0004",
+      "eventType": "AwsApiCall"
     },
     {
       "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventTime": "2026-11-25T08:05:00Z",
       "eventSource": "cloudtrail.amazonaws.com",
       "eventName": "DeleteTrail",
-      "eventTime": "2026-11-25T08:05:00Z",
       "awsRegion": "eu-central-1",
-      "sourceIPAddress": "203.0.113.10"
+      "sourceIPAddress": "203.0.113.10",
+      "eventID": "00000000-0000-0000-0000-00005eed0005",
+      "eventType": "AwsApiCall"
     },
     {
       "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventTime": "2026-11-25T08:10:00Z",
       "eventSource": "guardduty.amazonaws.com",
       "eventName": "DeleteDetector",
-      "eventTime": "2026-11-25T08:10:00Z",
       "awsRegion": "eu-central-1",
-      "sourceIPAddress": "203.0.113.10"
+      "sourceIPAddress": "203.0.113.10",
+      "eventID": "00000000-0000-0000-0000-00005eed0006",
+      "eventType": "AwsApiCall"
     }
   ]
 }

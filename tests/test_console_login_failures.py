@@ -119,3 +119,26 @@ def test_ignores_non_string_timestamps():
     ]
 
     assert detect_console_login_failures(events) == []
+
+
+def test_finding_includes_window_times_event_ids_and_users():
+    events = []
+
+    for minute in range(5):
+        events.append({
+            "eventSource": "signin.amazonaws.com",
+            "eventName": "ConsoleLogin",
+            "eventTime": f"2026-11-25T08:0{minute}:00Z",
+            "eventID": f"event-{minute}",
+            "sourceIPAddress": "203.0.113.10",
+            "userIdentity": {"userName": "example-admin"},
+            "responseElements": {"ConsoleLogin": "Failure"},
+        })
+
+    findings = detect_console_login_failures(events)
+
+    assert len(findings) == 1
+    assert findings[0]["first_event_time"] == "2026-11-25T08:00:00Z"
+    assert findings[0]["last_event_time"] == "2026-11-25T08:04:00Z"
+    assert findings[0]["event_ids"] == [f"event-{i}" for i in range(5)]
+    assert findings[0]["targeted_users"] == ["example-admin"]

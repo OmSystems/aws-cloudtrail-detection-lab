@@ -1,6 +1,8 @@
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
+from cloudtrail_analyzer.rules.common import get_actor
+
 
 FAILURE_THRESHOLD = 5
 TIME_WINDOW_MINUTES = 10
@@ -46,40 +48,58 @@ def detect_console_login_failures(events):
         if timestamp.tzinfo is None:
             continue
 
-        failures_by_ip[source_ip].append(timestamp)
+        failures_by_ip[source_ip].append((timestamp, event))
 
     findings = []
 
-    for source_ip, timestamps in failures_by_ip.items():
+    for source_ip, failures in failures_by_ip.items():
 
-        timestamps.sort()
+        failures.sort(key=lambda failure: failure[0])
 
-        for index, current_time in enumerate(timestamps):
+        for current_time, _ in failures:
 
             window_start = current_time - timedelta(
                 minutes=TIME_WINDOW_MINUTES
             )
 
-            matching_attempts = [
-                timestamp
-                for timestamp in timestamps
+            matching = [
+                (timestamp, event)
+                for timestamp, event in failures
                 if window_start <= timestamp <= current_time
             ]
 
-            if len(matching_attempts) >= FAILURE_THRESHOLD:
+            if len(matching) >= FAILURE_THRESHOLD:
 
-                findings.append({
+                targeted_users = sorted({
+                    actor
+                    for _, event in matching
+                    if (actor := get_actor(event))
+                })
+
+                finding = {
                     "rule_id": "AUTH-001",
                     "rule_name": "Console Login Failure Burst",
                     "severity": "HIGH",
                     "source_ip": source_ip,
-                    "failed_attempts": len(matching_attempts),
+                    "failed_attempts": len(matching),
                     "time_window_minutes": TIME_WINDOW_MINUTES,
+                    "first_event_time": matching[0][1].get("eventTime"),
+                    "last_event_time": matching[-1][1].get("eventTime"),
+                    "event_ids": [
+                        event["eventID"]
+                        for _, event in matching
+                        if event.get("eventID")
+                    ],
                     "description": (
                         "Multiple failed AWS Console login attempts "
                         "detected from the same source IP."
                     )
-                })
+                }
+
+                if targeted_users:
+                    finding["targeted_users"] = targeted_users
+
+                findings.append(finding)
 
                 break
 

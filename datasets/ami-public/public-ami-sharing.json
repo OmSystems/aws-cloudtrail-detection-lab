@@ -2,18 +2,95 @@
   "Records": [
     {
       "eventVersion": "1.08",
+      "eventTime": "2026-11-25T08:50:00Z",
       "eventSource": "ec2.amazonaws.com",
       "eventName": "ModifyImageAttribute",
-      "eventTime": "2026-11-25T09:00:00Z",
       "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventType": "AwsApiCall",
       "requestParameters": {
         "imageId": "ami-0123456789abcdef0",
+        "attributeType": "launchPermission",
         "launchPermission": {
           "add": {
-            "group": "all"
+            "items": [
+              {
+                "userId": "111122223333"
+              }
+            ]
           }
         }
-      }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed000c"
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-11-25T08:55:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "ModifyImageAttribute",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEIN",
+        "arn": "arn:aws:iam::123456789012:user/example-intern",
+        "accountId": "123456789012",
+        "userName": "example-intern"
+      },
+      "eventType": "AwsApiCall",
+      "errorCode": "Client.UnauthorizedOperation",
+      "errorMessage": "You are not authorized to perform this operation.",
+      "requestParameters": {
+        "imageId": "ami-0123456789abcdef0",
+        "attributeType": "launchPermission",
+        "launchPermission": {
+          "add": {
+            "items": [
+              {
+                "group": "all"
+              }
+            ]
+          }
+        }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed000d"
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-11-25T09:00:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "ModifyImageAttribute",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventType": "AwsApiCall",
+      "requestParameters": {
+        "imageId": "ami-0123456789abcdef0",
+        "attributeType": "launchPermission",
+        "launchPermission": {
+          "add": {
+            "items": [
+              {
+                "group": "all"
+              }
+            ]
+          }
+        }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed000e"
     }
   ]
 }

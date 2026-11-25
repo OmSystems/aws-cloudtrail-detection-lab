@@ -2,10 +2,18 @@
   "Records": [
     {
       "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEIN",
+        "arn": "arn:aws:iam::123456789012:user/example-intern",
+        "accountId": "123456789012",
+        "userName": "example-intern"
+      },
+      "eventTime": "2026-11-24T09:55:00Z",
       "eventSource": "s3.amazonaws.com",
       "eventName": "PutBucketAcl",
-      "eventTime": "2026-11-24T10:00:00Z",
       "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
       "requestParameters": {
         "bucketName": "company-data",
         "AccessControlPolicy": {
@@ -19,7 +27,42 @@
             }
           }
         }
-      }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed0002",
+      "eventType": "AwsApiCall",
+      "errorCode": "AccessDenied",
+      "errorMessage": "User is not authorized to perform: s3:PutBucketAcl"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventTime": "2026-11-24T10:00:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutBucketAcl",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
+      "requestParameters": {
+        "bucketName": "company-data",
+        "AccessControlPolicy": {
+          "AccessControlList": {
+            "Grant": {
+              "Grantee": {
+                "xsi:type": "Group",
+                "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+              },
+              "Permission": "READ"
+            }
+          }
+        }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed0001",
+      "eventType": "AwsApiCall"
     }
   ]
 }

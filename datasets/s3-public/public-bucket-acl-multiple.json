@@ -2,10 +2,18 @@
   "Records": [
     {
       "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAEXAMPLEEXAMPLEAD",
+        "arn": "arn:aws:iam::123456789012:user/example-admin",
+        "accountId": "123456789012",
+        "userName": "example-admin"
+      },
+      "eventTime": "2026-11-24T10:30:00Z",
       "eventSource": "s3.amazonaws.com",
       "eventName": "PutBucketAcl",
-      "eventTime": "2026-11-24T10:30:00Z",
       "awsRegion": "eu-central-1",
+      "sourceIPAddress": "198.51.100.7",
       "requestParameters": {
         "bucketName": "company-data-multiple",
         "AccessControlPolicy": {
@@ -35,7 +43,9 @@
             ]
           }
         }
-      }
+      },
+      "eventID": "00000000-0000-0000-0000-00005eed0003",
+      "eventType": "AwsApiCall"
     }
   ]
 }

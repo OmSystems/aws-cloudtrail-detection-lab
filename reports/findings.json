@@ -15,7 +15,12 @@
             "severity": "HIGH",
             "event_name": "PutBucketAcl",
             "bucket_name": "company-data",
-            "description": "S3 bucket ACL grants public read access."
+            "description": "S3 bucket ACL grants public read access.",
+            "event_time": "2026-11-24T10:00:00Z",
+            "event_id": "00000000-0000-0000-0000-00005eed0001",
+            "aws_region": "eu-central-1",
+            "source_ip": "198.51.100.7",
+            "actor": "arn:aws:iam::123456789012:user/example-admin"
         },
         {
             "rule_id": "SEC-001",
@@ -23,7 +28,12 @@
             "severity": "HIGH",
             "event_source": "cloudtrail.amazonaws.com",
             "event_name": "StopLogging",
-            "description": "CloudTrail logging stopped."
+            "description": "CloudTrail logging stopped.",
+            "event_time": "2026-11-25T08:00:00Z",
+            "event_id": "00000000-0000-0000-0000-00005eed0004",
+            "aws_region": "eu-central-1",
+            "source_ip": "203.0.113.10",
+            "actor": "arn:aws:iam::123456789012:user/example-admin"
         },
         {
             "rule_id": "SEC-001",
@@ -31,7 +41,12 @@
             "severity": "HIGH",
             "event_source": "cloudtrail.amazonaws.com",
             "event_name": "DeleteTrail",
-            "description": "CloudTrail trail deleted."
+            "description": "CloudTrail trail deleted.",
+            "event_time": "2026-11-25T08:05:00Z",
+            "event_id": "00000000-0000-0000-0000-00005eed0005",
+            "aws_region": "eu-central-1",
+            "source_ip": "203.0.113.10",
+            "actor": "arn:aws:iam::123456789012:user/example-admin"
         },
         {
             "rule_id": "SEC-001",
@@ -39,7 +54,12 @@
             "severity": "HIGH",
             "event_source": "guardduty.amazonaws.com",
             "event_name": "DeleteDetector",
-            "description": "GuardDuty detector deleted."
+            "description": "GuardDuty detector deleted.",
+            "event_time": "2026-11-25T08:10:00Z",
+            "event_id": "00000000-0000-0000-0000-00005eed0006",
+            "aws_region": "eu-central-1",
+            "source_ip": "203.0.113.10",
+            "actor": "arn:aws:iam::123456789012:user/example-admin"
         },
         {
             "rule_id": "EC2-001",
@@ -47,7 +67,12 @@
             "severity": "HIGH",
             "event_name": "ModifyImageAttribute",
             "image_id": "ami-0123456789abcdef0",
-            "description": "EC2 AMI launch permissions were modified to allow public access."
+            "description": "EC2 AMI launch permissions were modified to allow public access.",
+            "event_time": "2026-11-25T09:00:00Z",
+            "event_id": "00000000-0000-0000-0000-00005eed000e",
+            "aws_region": "eu-central-1",
+            "source_ip": "198.51.100.7",
+            "actor": "arn:aws:iam::123456789012:user/example-admin"
         },
         {
             "rule_id": "AUTH-001",
@@ -56,7 +81,19 @@
             "source_ip": "203.0.113.10",
             "failed_attempts": 5,
             "time_window_minutes": 10,
-            "description": "Multiple failed AWS Console login attempts detected from the same source IP."
+            "first_event_time": "2026-11-25T08:00:00Z",
+            "last_event_time": "2026-11-25T08:08:00Z",
+            "event_ids": [
+                "00000000-0000-0000-0000-00005eed0007",
+                "00000000-0000-0000-0000-00005eed0008",
+                "00000000-0000-0000-0000-00005eed0009",
+                "00000000-0000-0000-0000-00005eed000a",
+                "00000000-0000-0000-0000-00005eed000b"
+            ],
+            "description": "Multiple failed AWS Console login attempts detected from the same source IP.",
+            "targeted_users": [
+                "example-admin"
+            ]
         }
     ]
 }

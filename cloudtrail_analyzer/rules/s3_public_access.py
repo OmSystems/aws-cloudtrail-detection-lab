@@ -1,3 +1,6 @@
+from cloudtrail_analyzer.rules.common import event_context, is_failed_call
+
+
 def detect_public_s3_acl(event):
     """
     Detect public-read grants in S3 bucket ACL events.
@@ -7,6 +10,9 @@ def detect_public_s3_acl(event):
         return None
 
     if event.get("eventName") != "PutBucketAcl":
+        return None
+
+    if is_failed_call(event):
         return None
 
     request_parameters = event.get("requestParameters", {})
@@ -47,7 +53,8 @@ def detect_public_s3_acl(event):
                 "severity": "HIGH",
                 "event_name": event.get("eventName"),
                 "bucket_name": request_parameters.get("bucketName"),
-                "description": "S3 bucket ACL grants public read access."
+                "description": "S3 bucket ACL grants public read access.",
+                **event_context(event),
             }
 
     return None
