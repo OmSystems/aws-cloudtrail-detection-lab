@@ -1,0 +1,28 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "StopLogging",
+      "eventTime": "2026-11-25T08:00:00Z",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "203.0.113.10"
+    },
+    {
+      "eventVersion": "1.08",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "DeleteTrail",
+      "eventTime": "2026-11-25T08:05:00Z",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "203.0.113.10"
+    },
+    {
+      "eventVersion": "1.08",
+      "eventSource": "guardduty.amazonaws.com",
+      "eventName": "DeleteDetector",
+      "eventTime": "2026-11-25T08:10:00Z",
+      "awsRegion": "eu-central-1",
+      "sourceIPAddress": "203.0.113.10"
+    }
+  ]
+}

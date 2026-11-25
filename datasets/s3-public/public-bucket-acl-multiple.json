@@ -1,0 +1,41 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "PutBucketAcl",
+      "eventTime": "2026-11-24T10:30:00Z",
+      "awsRegion": "eu-central-1",
+      "requestParameters": {
+        "bucketName": "company-data-multiple",
+        "AccessControlPolicy": {
+          "AccessControlList": {
+            "Grant": [
+              {
+                "Grantee": {
+                  "xsi:type": "CanonicalUser",
+                  "ID": "example-user-id"
+                },
+                "Permission": "READ"
+              },
+              {
+                "Grantee": {
+                  "xsi:type": "Group",
+                  "URI": "http://acs.amazonaws.com/groups/global/AuthenticatedUsers"
+                },
+                "Permission": "READ"
+              },
+              {
+                "Grantee": {
+                  "xsi:type": "Group",
+                  "URI": "http://acs.amazonaws.com/groups/global/AllUsers"
+                },
+                "Permission": "READ"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

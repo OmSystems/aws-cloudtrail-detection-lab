@@ -16,3 +16,11 @@ crash.*.log
 # Local environment files
 .env
 .env.*
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/

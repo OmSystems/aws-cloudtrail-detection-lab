@@ -1,0 +1,39 @@
+{
+  "Records": [
+    {
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventTime": "2026-11-25T08:00:00Z",
+      "sourceIPAddress": "203.0.113.10",
+      "responseElements": {"ConsoleLogin": "Failure"}
+    },
+    {
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventTime": "2026-11-25T08:02:00Z",
+      "sourceIPAddress": "203.0.113.10",
+      "responseElements": {"ConsoleLogin": "Failure"}
+    },
+    {
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventTime": "2026-11-25T08:04:00Z",
+      "sourceIPAddress": "203.0.113.10",
+      "responseElements": {"ConsoleLogin": "Failure"}
+    },
+    {
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventTime": "2026-11-25T08:06:00Z",
+      "sourceIPAddress": "203.0.113.10",
+      "responseElements": {"ConsoleLogin": "Failure"}
+    },
+    {
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventTime": "2026-11-25T08:08:00Z",
+      "sourceIPAddress": "203.0.113.10",
+      "responseElements": {"ConsoleLogin": "Failure"}
+    }
+  ]
+}

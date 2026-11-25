@@ -1,0 +1,19 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "ModifyImageAttribute",
+      "eventTime": "2026-11-25T09:00:00Z",
+      "awsRegion": "eu-central-1",
+      "requestParameters": {
+        "imageId": "ami-0123456789abcdef0",
+        "launchPermission": {
+          "add": {
+            "group": "all"
+          }
+        }
+      }
+    }
+  ]
+}

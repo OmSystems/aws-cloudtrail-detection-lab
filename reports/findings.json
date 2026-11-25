@@ -1,0 +1,62 @@
+{
+    "schema_version": "1.0",
+    "summary": {
+        "total_findings": 6,
+        "severity_counts": {
+            "HIGH": 6,
+            "MEDIUM": 0,
+            "LOW": 0
+        }
+    },
+    "findings": [
+        {
+            "rule_id": "S3-001",
+            "rule_name": "Public S3 Bucket ACL",
+            "severity": "HIGH",
+            "event_name": "PutBucketAcl",
+            "bucket_name": "company-data",
+            "description": "S3 bucket ACL grants public read access."
+        },
+        {
+            "rule_id": "SEC-001",
+            "rule_name": "Security Service Deletion or Shutdown",
+            "severity": "HIGH",
+            "event_source": "cloudtrail.amazonaws.com",
+            "event_name": "StopLogging",
+            "description": "CloudTrail logging stopped."
+        },
+        {
+            "rule_id": "SEC-001",
+            "rule_name": "Security Service Deletion or Shutdown",
+            "severity": "HIGH",
+            "event_source": "cloudtrail.amazonaws.com",
+            "event_name": "DeleteTrail",
+            "description": "CloudTrail trail deleted."
+        },
+        {
+            "rule_id": "SEC-001",
+            "rule_name": "Security Service Deletion or Shutdown",
+            "severity": "HIGH",
+            "event_source": "guardduty.amazonaws.com",
+            "event_name": "DeleteDetector",
+            "description": "GuardDuty detector deleted."
+        },
+        {
+            "rule_id": "EC2-001",
+            "rule_name": "Public AMI Sharing",
+            "severity": "HIGH",
+            "event_name": "ModifyImageAttribute",
+            "image_id": "ami-0123456789abcdef0",
+            "description": "EC2 AMI launch permissions were modified to allow public access."
+        },
+        {
+            "rule_id": "AUTH-001",
+            "rule_name": "Console Login Failure Burst",
+            "severity": "HIGH",
+            "source_ip": "203.0.113.10",
+            "failed_attempts": 5,
+            "time_window_minutes": 10,
+            "description": "Multiple failed AWS Console login attempts detected from the same source IP."
+        }
+    ]
+}
