@@ -1,5 +1,7 @@
 # AWS CloudTrail Detection Lab
 
+![CI](https://github.com/OmSystems/aws-cloudtrail-detection-lab/actions/workflows/ci.yml/badge.svg)
+
 A hands-on cloud security lab combining Terraform security configuration analysis with Python-based AWS CloudTrail event detection.
 
 The project demonstrates two complementary security activities:
@@ -7,7 +9,7 @@ The project demonstrates two complementary security activities:
 - **Infrastructure security:** Compare secure and intentionally vulnerable Amazon S3 configurations using Terraform and Checkov.
 - **Detection engineering:** Analyze CloudTrail JSON events and identify security-relevant activities using Python detection rules.
 
-No AWS infrastructure is deployed. CloudTrail datasets are hand-written test fixtures that follow the real CloudTrail record structure (not logs from a live account).
+No AWS infrastructure is deployed. Most CloudTrail datasets are hand-written test fixtures that follow the real CloudTrail record structure. One additional subset is unmodified real CloudTrail records from a public attack-simulation dataset (see [Real-World Validation](#real-world-validation)).
 
 ## Project Objectives
 
@@ -131,12 +133,22 @@ The resource counts differ between configurations. Therefore, raw pass/fail tota
 
 The Python analyzer currently implements four detection rules.
 
-| Rule ID | Detection | Event Conditions | Severity |
-|---|---|---|---|
-| S3-001 | Public S3 Bucket ACL | `PutBucketAcl` with an `AllUsers` READ grant | HIGH |
-| SEC-001 | Security Service Deletion or Shutdown | `StopLogging`, `DeleteTrail`, or `DeleteDetector` | HIGH |
-| AUTH-001 | Console Login Failure Burst | At least 5 failed console logins from one source IP within 10 minutes | HIGH |
-| EC2-001 | Public AMI Sharing | `ModifyImageAttribute` with `launchPermission.add.items[].group = "all"` | HIGH |
+| Rule ID | Detection | Event Conditions | Severity | MITRE ATT&CK |
+|---|---|---|---|---|
+| S3-001 | Public S3 Bucket ACL | `PutBucketAcl` with an `AllUsers` READ grant | HIGH | T1530 Data from Cloud Storage |
+| SEC-001 | Security Service Deletion or Shutdown | `StopLogging`, `DeleteTrail`, or `DeleteDetector` | HIGH | T1562.008 Disable or Modify Cloud Logs |
+| AUTH-001 | Console Login Failure Burst | At least 5 failed console logins from one source IP within 10 minutes | MEDIUM | T1110 Brute Force |
+| EC2-001 | Public AMI Sharing | `ModifyImageAttribute` with `launchPermission.add.items[].group = "all"` | HIGH | T1537 Transfer Data to Cloud Account |
+
+Severity and ATT&CK mappings live in one place, `cloudtrail_analyzer/rules/metadata.py`, and every finding carries them. They are assigned by the author, and the reasoning for each severity is in that file. AUTH-001 is MEDIUM because failed logins alone do not show that a credential worked. T1562.008 and T1537 match published vendor detections for the same behaviour; T1530 and T1110 are the author's judgement.
+
+### Adding a Rule
+
+1. Write the detection function in `cloudtrail_analyzer/rules/`. Event rules take one event and return a finding or `None`; batch rules take all events and return a list.
+2. Add the rule's name, severity and ATT&CK techniques to `rules/metadata.py` and use `**rule_fields("ID")` in the finding.
+3. Append one `Rule(...)` entry to `rules/registry.py`.
+
+`engine.py` does not change. `tests/test_registry.py` checks that every registered rule has well-formed metadata.
 
 ### Finding Fields
 
@@ -170,12 +182,15 @@ aws-cloudtrail-detection-lab/
 |       |-- console_login_failures.py
 |       |-- public_ami_sharing.py
 |       |-- common.py
+|       |-- metadata.py
+|       |-- registry.py
 |
 |-- datasets/
 |   |-- s3-public/
 |   |-- security-service-deletion/
 |   |-- login-failures/
 |   |-- ami-public/
+|   |-- real-world/
 |
 |-- terraform/
 |   |-- secure/
@@ -189,6 +204,7 @@ aws-cloudtrail-detection-lab/
 |   |-- findings.md
 |
 |-- tests/
+|-- .github/workflows/ci.yml
 |
 |-- requirements.txt
 |-- LICENSE
@@ -199,7 +215,7 @@ aws-cloudtrail-detection-lab/
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+ (CI runs 3.10 and 3.12)
 - pytest (`pip install -r requirements.txt`)
 - Terraform
 - Checkov
@@ -227,7 +243,9 @@ reports/findings.md
 python3 -m pytest -v
 ```
 
-The test suite validates event loading, individual detection rules, detection engine integration, report generation, and CLI execution.
+The test suite validates event loading, individual detection rules, the rule registry, detection engine integration, report generation, CLI execution, and detection against real CloudTrail records.
+
+GitHub Actions runs the suite on every push and also fails if `reports/findings.*` are out of date. Terraform and Checkov are not run in CI.
 
 ### Validate Terraform Configurations
 
@@ -261,8 +279,8 @@ The current project execution produces:
 | Metric | Result |
 |---|---:|
 | Hand-written CloudTrail events analyzed | 13 |
-| Security findings generated | 6 |
-| Automated tests passing | 61 |
+| Security findings generated | 6 (5 HIGH, 1 MEDIUM) |
+| Automated tests passing | 74 |
 | Detection rules | 4 |
 | Terraform configurations scanned | 2 |
 
@@ -270,9 +288,22 @@ All six generated findings are classified as HIGH by the current rules.
 
 These results demonstrate that the implemented detection logic identifies the expected conditions in the supplied fixtures, including three events that must not alert (a private AMI share and two calls denied with `AccessDenied`/`UnauthorizedOperation`). They are not evidence of actual attacks or production detection performance.
 
+## Real-World Validation
+
+The analyzer was run on a public dataset of real CloudTrail logs from [invictus-ir/aws_dataset](https://github.com/invictus-ir/aws_dataset) (MIT License), generated by running Stratus Red Team attack techniques in the dataset authors' own AWS account. All 55 files (2,900 events) loaded and ran without errors. A 14-event subset covering this lab's event types is committed in `datasets/real-world/` and tested in `tests/test_real_world_logs.py`.
+
+| Real event | Expected | Result |
+|---|---|---|
+| `DeleteTrail`, succeeded (2) | SEC-001 alert | 2 SEC-001 findings |
+| `StopLogging` and `DeleteTrail`, failed with `TrailNotFoundException` (4) | No alert | No alert |
+| `ModifyImageAttribute` adding one account ID, not the public group (1) | No EC2-001 alert | No alert |
+| `ConsoleLogin` success (2) | No AUTH-001 alert | No alert |
+
+What this does and does not show: the rules handle real record structure for these event types without schema errors, and the error-code and public-only logic behaves correctly on real data. It does not show real-world detection quality. This one dataset has a single simulated attacker and contains no failed logins or `PutBucketAcl` events, so SEC-001 is the only rule exercised with a positive match. S3-001, AUTH-001 and EC2-001 are still validated positively only by hand-written fixtures.
+
 ## Datasets and References
 
-The `datasets/` directory contains hand-written CloudTrail JSON fixtures. Field names and nesting follow the documented CloudTrail record format (for example `launchPermission.add.items[]` for AMI changes), but the events were written by the author, not exported from AWS.
+The `datasets/` directory contains hand-written CloudTrail JSON fixtures, plus the real-log subset in `datasets/real-world/` (see its README for source and license). Field names and nesting follow the documented CloudTrail record format (for example `launchPermission.add.items[]` for AMI changes), but the events were written by the author, not exported from AWS.
 
 The fixtures cover:
 
@@ -287,14 +318,15 @@ The fixtures are intended for repeatable local testing. They are not collected f
 
 - No AWS infrastructure was deployed.
 - No live AWS account or CloudTrail event stream is connected.
-- Detection tests use hand-written fixtures rather than real exported logs; schema mismatches with unusual real events are possible.
+- Real-log validation covers one public dataset and only one rule with a positive match (see Real-World Validation). Schema mismatches with other real events are still possible.
+- The loader accepts only the `{"Records": [...]}` format used by CloudTrail log files, not newline-delimited JSON exported by some SIEM and Athena workflows.
+- EC2-001 alerts only on public sharing. A share to one specific account, which is also a known exfiltration pattern, does not alert (confirmed on the real data).
 - The detection rules cover selected event patterns, not the full range of AWS security threats.
 - Findings require contextual investigation before being treated as security incidents.
-- Detection thresholds and severities are currently hard-coded, and every rule is HIGH.
+- Detection thresholds are hard-coded, and each rule has one fixed severity regardless of context (for example, which bucket or user is involved).
 - S3-001 only matches an `AllUsers` + `READ` grant. It does not cover other permissions, the `AuthenticatedUsers` group, canned ACL headers or public bucket policies.
 - SEC-001 covers only `StopLogging`, `DeleteTrail` and `DeleteDetector`.
 - AUTH-001 groups by source IP only and does not detect attempts spread across many IPs.
-- Rules are not mapped to MITRE ATT&CK.
 - No alert delivery, persistent storage, dashboard, or incident-response integration is implemented.
 - Checkov results represent static Terraform analysis, not runtime security validation.
 
@@ -305,15 +337,16 @@ Status: complete as a local, fixture-based lab. The implementation includes:
 - Secure and vulnerable S3 Terraform configurations.
 - Checkov security scan reports and comparison.
 - Python CloudTrail JSON loader.
-- Four detection rules.
+- Four detection rules, registered through a rule registry with per-rule severity and MITRE ATT&CK metadata.
 - Central detection engine.
 - JSON and Markdown reporting.
-- Automated unit and integration tests.
+- Automated unit and integration tests, including tests on real CloudTrail records.
+- GitHub Actions CI.
 - Findings that identify the actor, time and original event ID.
 
 ### Future Work
 
-- Validate the rules against real exported CloudTrail logs.
+- Validate S3-001, AUTH-001 and EC2-001 against real logs that contain those events.
+- Support newline-delimited CloudTrail JSON in the loader.
 - Cover more S3 exposure paths (other ACL permissions, bucket policies, Block Public Access removal).
-- Map rules to MITRE ATT&CK and add per-rule severity.
-- Add CI and a rule registry so new rules need no engine changes.
+- Make thresholds and severities configurable.
