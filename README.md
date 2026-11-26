@@ -237,6 +237,19 @@ reports/findings.json
 reports/findings.md
 ```
 
+### Analyze Your Own CloudTrail Logs
+
+Pass files or directories to analyze real exports instead of the bundled fixtures:
+
+```bash
+python3 -m cloudtrail_analyzer path/to/logs/
+python3 -m cloudtrail_analyzer export.jsonl.gz --output-dir out/
+```
+
+The loader accepts CloudTrail log files (`{"Records": [...]}`), newline-delimited JSON (one event per line), a single bare event, and any of these gzip-compressed (`.json`, `.jsonl`, `.ndjson`, `.gz`). Directories are searched recursively, and unreadable files are skipped with a message instead of stopping the run.
+
+The output lists how many events each rule can match in the input, so you can tell whether a dataset can exercise a rule at all, then the findings. Reports are written only if you pass `--output-dir`; this mode never overwrites `reports/`.
+
 ### Run Automated Tests
 
 ```bash
@@ -280,7 +293,7 @@ The current project execution produces:
 |---|---:|
 | Hand-written CloudTrail events analyzed | 13 |
 | Security findings generated | 6 (5 HIGH, 1 MEDIUM) |
-| Automated tests passing | 74 |
+| Automated tests passing | 91 |
 | Detection rules | 4 |
 | Terraform configurations scanned | 2 |
 
@@ -319,7 +332,7 @@ The fixtures are intended for repeatable local testing. They are not collected f
 - No AWS infrastructure was deployed.
 - No live AWS account or CloudTrail event stream is connected.
 - Real-log validation covers one public dataset and only one rule with a positive match (see Real-World Validation). Schema mismatches with other real events are still possible.
-- The loader accepts only the `{"Records": [...]}` format used by CloudTrail log files, not newline-delimited JSON exported by some SIEM and Athena workflows.
+- The loader handles CloudTrail log files, newline-delimited JSON, bare events and gzip. It does not handle SIEM wrapper formats that nest the CloudTrail event inside another field.
 - EC2-001 alerts only on public sharing. A share to one specific account, which is also a known exfiltration pattern, does not alert (confirmed on the real data).
 - The detection rules cover selected event patterns, not the full range of AWS security threats.
 - Findings require contextual investigation before being treated as security incidents.
@@ -347,6 +360,5 @@ Status: complete as a local, fixture-based lab. The implementation includes:
 ### Future Work
 
 - Validate S3-001, AUTH-001 and EC2-001 against real logs that contain those events.
-- Support newline-delimited CloudTrail JSON in the loader.
 - Cover more S3 exposure paths (other ACL permissions, bucket policies, Block Public Access removal).
 - Make thresholds and severities configurable.
