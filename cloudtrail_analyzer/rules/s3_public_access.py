@@ -1,4 +1,5 @@
 from cloudtrail_analyzer.rules.common import event_context, is_failed_call
+from cloudtrail_analyzer.rules.metadata import rule_fields
 
 
 def detect_public_s3_acl(event):
@@ -48,9 +49,7 @@ def detect_public_s3_acl(event):
             and permission == "READ"
         ):
             return {
-                "rule_id": "S3-001",
-                "rule_name": "Public S3 Bucket ACL",
-                "severity": "HIGH",
+                **rule_fields("S3-001"),
                 "event_name": event.get("eventName"),
                 "bucket_name": request_parameters.get("bucketName"),
                 "description": "S3 bucket ACL grants public read access.",

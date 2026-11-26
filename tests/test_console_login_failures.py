@@ -30,7 +30,7 @@ def test_detects_five_failures_within_ten_minutes():
 
     assert len(findings) == 1
     assert findings[0]["rule_id"] == "AUTH-001"
-    assert findings[0]["severity"] == "HIGH"
+    assert findings[0]["severity"] == "MEDIUM"
     assert findings[0]["failed_attempts"] == 5
 
 

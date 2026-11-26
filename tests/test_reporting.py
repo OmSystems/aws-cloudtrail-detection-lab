@@ -126,3 +126,26 @@ def test_markdown_report_creates_missing_output_directory(tmp_path):
     write_markdown_report([], output_path)
 
     assert output_path.exists()
+
+def test_markdown_report_lists_mitre_attack(tmp_path):
+    findings = [
+        {
+            "rule_id": "SEC-001",
+            "rule_name": "Security Service Deletion or Shutdown",
+            "severity": "HIGH",
+            "mitre_attack": [
+                {
+                    "id": "T1562.008",
+                    "name": "Impair Defenses: Disable or Modify Cloud Logs",
+                    "tactic": "Defense Evasion",
+                }
+            ],
+        }
+    ]
+    output = tmp_path / "findings.md"
+
+    write_markdown_report(findings, output)
+
+    assert "T1562.008 (Impair Defenses: Disable or Modify Cloud Logs)" in output.read_text(
+        encoding="utf-8"
+    )

@@ -2,6 +2,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
 from cloudtrail_analyzer.rules.common import get_actor
+from cloudtrail_analyzer.rules.metadata import rule_fields
 
 
 FAILURE_THRESHOLD = 5
@@ -77,9 +78,7 @@ def detect_console_login_failures(events):
                 })
 
                 finding = {
-                    "rule_id": "AUTH-001",
-                    "rule_name": "Console Login Failure Burst",
-                    "severity": "HIGH",
+                    **rule_fields("AUTH-001"),
                     "source_ip": source_ip,
                     "failed_attempts": len(matching),
                     "time_window_minutes": TIME_WINDOW_MINUTES,

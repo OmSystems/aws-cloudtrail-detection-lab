@@ -1,4 +1,5 @@
 from cloudtrail_analyzer.rules.common import event_context, is_failed_call
+from cloudtrail_analyzer.rules.metadata import rule_fields
 
 
 SECURITY_EVENTS = {
@@ -29,9 +30,7 @@ def detect_security_service_deletion(event):
         return None
 
     return {
-        "rule_id": "SEC-001",
-        "rule_name": "Security Service Deletion or Shutdown",
-        "severity": "HIGH",
+        **rule_fields("SEC-001"),
         "event_source": event_source,
         "event_name": event_name,
         "description": service_events[event_name],

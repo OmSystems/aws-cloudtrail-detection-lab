@@ -112,6 +112,15 @@ def write_markdown_report(findings, output_path):
                             f"- **{label}:** {finding[field]}"
                         )
 
+                if finding.get("mitre_attack"):
+                    lines.append(
+                        "- **MITRE ATT&CK:** "
+                        + ", ".join(
+                            f"{t['id']} ({t['name']})"
+                            for t in finding["mitre_attack"]
+                        )
+                    )
+
                 if finding.get("failed_attempts"):
                     lines.append(
                         f"- **Failed attempts:** {finding['failed_attempts']}"

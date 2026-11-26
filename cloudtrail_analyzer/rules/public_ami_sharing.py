@@ -1,4 +1,5 @@
 from cloudtrail_analyzer.rules.common import event_context, is_failed_call
+from cloudtrail_analyzer.rules.metadata import rule_fields
 
 
 def _adds_public_group(add_permission):
@@ -51,9 +52,7 @@ def detect_public_ami_sharing(event):
         return None
 
     return {
-        "rule_id": "EC2-001",
-        "rule_name": "Public AMI Sharing",
-        "severity": "HIGH",
+        **rule_fields("EC2-001"),
         "event_name": event.get("eventName"),
         "image_id": request_parameters.get("imageId"),
         "description": (
